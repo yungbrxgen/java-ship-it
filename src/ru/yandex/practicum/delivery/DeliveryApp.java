@@ -104,7 +104,7 @@ public class DeliveryApp {
 
     private static void sendParcels() {
         // Пройти по allParcels, вызвать packageItem() и deliver()
-        for(Parcel parcel : allParcels) {
+        for (Parcel parcel : allParcels) {
             parcel.packageItem();
             parcel.deliver();
         }
@@ -113,10 +113,10 @@ public class DeliveryApp {
     private static void calculateCosts() {
         // Посчитать общую стоимость всех доставок и вывести на экран
         int summaryCost = 0;
-        for(Parcel parcel : allParcels) {
+        for (Parcel parcel : allParcels) {
             summaryCost += parcel.calculateDeliveryCost();
         }
-        System.out.println("Общая стоимость всех доставок " +  summaryCost + ".");
+        System.out.println("Общая стоимость всех доставок " + summaryCost + ".");
     }
 
     public static void trackParcels() {

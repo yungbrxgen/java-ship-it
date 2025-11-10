@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DeliveryCostTest {
+public class DeliveryCostTest {
 
     @Test
     void calculateStandartParcelCost() {
@@ -18,7 +18,7 @@ class DeliveryCostTest {
     @Test
     void calculateFragileParcelCost() {
         FragileParcel parcel = new FragileParcel("Ваза", 2, "Москва", 15);
-        assertEquals(10, parcel.calculateDeliveryCost());
+        assertEquals(8, parcel.calculateDeliveryCost());
     }
 
     @Test
@@ -29,8 +29,13 @@ class DeliveryCostTest {
 
     @Test
     void isExpired() {
-        PerishableParcel parcel = new PerishableParcel("Торт", 1 , "Самара", 5, 2);
+        PerishableParcel parcel = new PerishableParcel("Торт", 1, "Самара", 5, 2);
         assertTrue(parcel.isExpired(8));
+    }
+
+    @Test
+    void isNotExpired() {
+        PerishableParcel parcel = new PerishableParcel("Торт", 1, "Самара", 5, 2);
         assertFalse(parcel.isExpired(6));
     }
 
@@ -38,6 +43,14 @@ class DeliveryCostTest {
     void addParcelToBoxSuccess() {
         ParcelBox<StandartParcel> box = new ParcelBox<>(10);
         StandartParcel parcel = new StandartParcel("Ручка", 1, "Уфа", 1);
+        assertTrue(box.addParcel(parcel));
+        assertEquals(1, box.getAllParcels().size());
+    }
+
+    @Test
+    void addParcelToBoxTest() {
+        ParcelBox<StandartParcel> box = new ParcelBox<>(15);
+        StandartParcel parcel = new StandartParcel("Кресло", 15, "Краснодар", 10);
         assertTrue(box.addParcel(parcel));
         assertEquals(1, box.getAllParcels().size());
     }

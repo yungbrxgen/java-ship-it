@@ -4,7 +4,7 @@ public class PerishableParcel extends Parcel {
     private static final int DELIVERY_COST = 3;
     private int timeToLive;
 
-    public PerishableParcel(String description, int weight, String deliveryAddress, int sendDay, int timeToLive){
+    public PerishableParcel(String description, int weight, String deliveryAddress, int sendDay, int timeToLive) {
         super(description, weight, deliveryAddress, sendDay);
         this.timeToLive = timeToLive;
     }
@@ -20,7 +20,7 @@ public class PerishableParcel extends Parcel {
     }
 
     public boolean isExpired(int currentDay) {
-        return (getSendDay() + timeToLive) < currentDay;
+        return (getSendDay() + timeToLive) <= currentDay;
     }
 
     public int getTimeToLive() {
